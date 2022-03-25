@@ -17,7 +17,7 @@ __email__       = "hello@mianfg.me"
 __status__      = "Production"
 
 
-import spacy, requests, json
+import spacy, requests, json, urllib
 
 
 SIMPLIFIER = {
@@ -53,8 +53,11 @@ class PictoLanguage:
         }
 
     def pictograms(self, word, language):
-        req = requests.get(f'https://api.arasaac.org/api/pictograms/{language}/bestsearch/{word}')
-        return [pic['_id'] for pic in json.loads(req.text)]
+        req = requests.get(f'https://api.arasaac.org/api/pictograms/{language}/bestsearch/{urllib.parse.quote(word)}')
+        if req.status_code == 200:
+            return [pic['_id'] for pic in json.loads(req.text)]
+        else:
+            return []
 
     def tokenize(self, sentence, language):
         """
