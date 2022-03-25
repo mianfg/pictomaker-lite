@@ -11,6 +11,8 @@
 
 A simple API to translate sentences into pictograms.
 
+> This is a more advanced version of my previous [PictoMaker](https://github.com/mianfg/pictomaker).
+
 ## Description
 
 This is a simple API that provides two endpoints:
