@@ -46,11 +46,20 @@ IMPORTANCES = ['VERB', 'NOUN', 'ADJ', 'ADV', 'DET', 'PRON', 'INTJ', 'CONJ', 'ADP
 
 class PictoLanguage:
     def __init__(self):
-        self.__NLP = {
-            'en': spacy.load("en_core_web_sm"),
-            'es': spacy.load("es_core_news_sm"),
-            'pl': spacy.load("pl_core_news_sm")
+        self.__NLP = {}
+
+        packages = {
+            'en': 'en_core_web_sm',
+            'es': 'es_core_news_sm',
+            'pl': 'pl_core_news_sm'
         }
+
+        for language in packages.keys():
+            try:
+                self.__NLP[language] = spacy.load(packages[language])
+            except:
+                spacy.cli.download(packages[language])
+                self.__NLP[language] = spacy.load(packages[language])
 
     def pictograms(self, word, language):
         req = requests.get(f'https://api.arasaac.org/api/pictograms/{language}/bestsearch/{urllib.parse.quote(word)}')
