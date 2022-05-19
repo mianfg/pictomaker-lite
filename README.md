@@ -41,3 +41,9 @@ All pictograms used by PictoMaker are property of [ARASAAC](https://arasaac.org/
 This API has been used:
 
 * In [this Cisco WebEx bot](https://github.com/mianfg/Incu2022/tree/main/webex-api-session) developed for Cisco Incubator Program 9.0.
+
+## Deployment
+
+You can deploy this API anywhere you like, but here's a fast way:
+
+[![Deploy to Vercel](https://camo.githubusercontent.com/f209ca5cc3af7dd930b6bfc55b3d7b6a5fde1aff/68747470733a2f2f76657263656c2e636f6d2f627574746f6e)](https://vercel.com/import/project?template=https://github.com/mianfg/pictomaker-lite)
