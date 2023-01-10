@@ -15,10 +15,10 @@ A simple API to translate sentences into pictograms.
 
 ## Description
 
-This is a simple API that provides two endpoints:
+This is a simple API that provides two capabilities:
 
-* `/tokenize`, that syntactically analizes a sentence and lemmatizes its componentes.
-* `/generate`, that generates a PNG image composed of pictograms.
+* A **tokenizer** that syntactically analizes a sentence and lemmatizes its componentes using Natural Language Processing.
+* A **generator**, that generates a PNG image or ZIP file composed of pictograms.
 
 ### Some Q&A
 
@@ -44,6 +44,8 @@ This API has been used:
 
 ## Deployment
 
-You can deploy this API anywhere you like, but here's a fast way:
+You can deploy this API anywhere you like, because it's containerized with **Docker**. Some commands to get you started on a local development environment:
 
-[![Deploy to Vercel](https://camo.githubusercontent.com/f209ca5cc3af7dd930b6bfc55b3d7b6a5fde1aff/68747470733a2f2f76657263656c2e636f6d2f627574746f6e)](https://vercel.com/import/project?template=https://github.com/mianfg/pictomaker-lite)
+1. Make sure you can use `docker-compose`.
+2. Create the container with `docker compose up --build`.
+3. Use Docker whenever you want to restart the process!

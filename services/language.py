@@ -1,68 +1,20 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-"""
-PictoLanguage
-=============
-This module tokenizes sentences via NLP
-"""
-
-__author__      = "Miguel Ángel Fernández Gutiérrez (@mianfg)"
-__copyright__   = "Copyright 2022, mianfg"
-__credits__     = ["Miguel Ángel Fernández Gutiérrez"]
-__license__     = "Creative Commons Zero v1.0 Universal"
-__version__     = "1.0"
-__mantainer__   = "Miguel Ángel Fernández Gutiérrez"
-__email__       = "hello@mianfg.me"
-__status__      = "Production"
-
-
 import spacy, requests, json, urllib
+from utils.language import SIMPLIFIER, IMPORTANCES, PACKAGES
 
-
-SIMPLIFIER = {
-    'ADJ' :     "ADJ",
-    'ADP' :     "ADP",
-    'ADV' :     "ADV",
-    'AUX' :     "VERB",
-    'CONJ' :    "CONJ",
-    'CCONJ' :   "CONJ",
-    'DET' :     "DET",
-    'INTJ' :    "INTJ",
-    'NOUN' :    "NOUN",
-    'NUM' :     "NOUN",
-    'PART' :    "OTHER",
-    'PRON' :    "PRON",
-    'PROPN' :   "NOUN",
-    'PUNCT' :   "OTHER",
-    'SCONJ' :   "CONJ",
-    'SYM' :     "OTHER",
-    'VERB' :    "VERB",
-    'X' :       "OTHER",
-    'SPACE' :   "OTHER"     # space -- note: tokenizer deletes this
-}
-
-IMPORTANCES = ['VERB', 'NOUN', 'ADJ', 'ADV', 'DET', 'PRON', 'INTJ', 'CONJ', 'ADP', 'OTHER']
 
 class PictoLanguage:
     def __init__(self):
         self.__NLP = {}
 
-        packages = {
-            'en': 'en_core_web_sm',
-            'es': 'es_core_news_sm',
-            'pl': 'pl_core_news_sm'
-        }
-
-        for language in packages.keys():
+        for language in PACKAGES.keys():
             try:
-                self.__NLP[language] = spacy.load(packages[language])
+                self.__NLP[language] = spacy.load(PACKAGES[language])
             except:
-                spacy.cli.download(packages[language])
-                self.__NLP[language] = spacy.load(packages[language])
+                spacy.cli.download(PACKAGES[language])
+                self.__NLP[language] = spacy.load(PACKAGES[language])
 
     def pictograms(self, word, language):
-        req = requests.get(f'https://api.arasaac.org/api/pictograms/{language}/bestsearch/{urllib.parse.quote(word)}')
+        req = requests.get(f'https://api.arasaac.org/api/pictograms/{language.value}/bestsearch/{urllib.parse.quote(word)}')
         if req.status_code == 200:
             return [pic['_id'] for pic in json.loads(req.text)]
         else:
