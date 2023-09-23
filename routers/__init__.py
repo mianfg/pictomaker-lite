@@ -5,5 +5,5 @@ from routers.v1.generate import router as generate_api
 
 router = APIRouter()
 
-router.include_router(tokenize_api, prefix="/tokenize", tags=["tokens"])
-router.include_router(generate_api, prefix="/generate", tags=["generations"])
+router.include_router(tokenize_api, prefix="/tokenize", tags=["Tokenize"])
+router.include_router(generate_api, prefix="/generate", tags=["Generate"])

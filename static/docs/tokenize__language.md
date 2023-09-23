@@ -1,0 +1,1 @@
+This endpoint performs a syntactical analysis of a sentence (`text`) given in a certain language (`language`). The result is a list of tokens that contains

@@ -3,6 +3,7 @@ from models.card import Cards
 from fastapi import Body, HTTPException
 from fastapi.responses import Response
 from services.images import PictoImageGenerator
+from utils import docs
 
 router = APIRouter()
 image_generator = PictoImageGenerator(
@@ -14,6 +15,8 @@ image_generator = PictoImageGenerator(
 
 @router.post(
     "/png",
+    summary="Generate PNG",
+    description=docs.generate_png,
     status_code=200,
     responses={
         200: {
@@ -33,6 +36,8 @@ async def generate_png(cards: Cards = Body(...)):
 
 @router.post(
     "/zip",
+    summary="Generate ZIP",
+    description=docs.generate_zip,
     status_code=200,
     responses={
         200: {
